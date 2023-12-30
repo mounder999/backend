@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Utilisateur;
 use App\Models\Patient;
 use App\Models\Medecin;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\JsonResponse; 
 use Illuminate\Support\Facades\Hash;
@@ -87,6 +88,7 @@ $medecin = null;
     }
     public function update(Request $request, $id)
 {
+    $user = Auth::user();
     $request->validate([
         'Nom' => 'sometimes|required',
         'Prénom' => 'sometimes|required',
@@ -182,5 +184,6 @@ public function delete($id)
         return response()->json(['message' => 'User deleted successfully'], 200);
     
 }
+
 
 }

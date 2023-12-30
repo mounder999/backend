@@ -17,22 +17,28 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        // Validate the incoming JSON data
+       
         $request->validate([
             'Adresse_Email' => 'required|email',
             'Mot_de_passe' => 'required',
         ]);
 
-        // Attempt to authenticate the user
+       
         if (Auth::attempt(['Adresse_Email' => $request->json('Adresse_Email'), 'password' => $request->json('Mot_de_passe')])) {
-            // Authentication successful
+            
             $user = Auth::user();
 
-            // You can add additional information to the response if needed
+            
             return response()->json(['user' => $user, 'message' => 'Login successful'], 200);
         }
 
-        // Authentication failed
+        
         return response()->json(['message' => 'Invalid email or password'], 401);
     }
+    // public function logout()
+    // {
+    //     Auth::logout();
+
+    //     return response()->json(['message' => 'Logout successful'], 200);
+    // }
 }

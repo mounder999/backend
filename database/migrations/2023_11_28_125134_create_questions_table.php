@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('Texte_de_la_question');
             $table->string('Type_de_question');
             $table->json('Options_de_Reponse')->nullable();
-            $table->integer('Points_attribues')->nullable();
+            $table->json('Points_attribues')->nullable();
             $table->integer('Ordre_affichage_dans_le_questionnaire');
             $table->json('Dependances_de_question')->nullable();
             $table->timestamps();
