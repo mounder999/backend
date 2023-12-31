@@ -17,7 +17,7 @@ class rpnd_Questionnaire extends Model
         'Reponse_a_la_question'
         ///'Score_attribue',
         //'Commentaires_sur_la_reponse',
-        // Add other response-specific attributes here
+        
     ];
 
     public function questionnaire()

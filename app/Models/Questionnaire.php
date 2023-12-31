@@ -13,6 +13,7 @@ class Questionnaire extends Model
     protected $fillable = [
         'patient_id',
         'Date_du_Questionnaire',
+        'score_addiction',
     ];
 
     public function patient()

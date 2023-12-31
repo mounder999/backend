@@ -5,9 +5,38 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Request;use App\Models\Medecin;
 
 class PatientController extends Controller
 {
+   
+    public function chooseDoctor(Request $request, $patientId)
+{
+    $request->validate([
+        'doctor_id' => 'required|exists:medecins,ID_Médecin',
+    ]);
+
+    $patient = Patient::find($patientId);
+
+    if (!$patient) {
+        return response()->json(['error' => 'Patient not found'], 404);
+    }
+
+    
+    if ($patient->doctor_id) {
+        throw ValidationException::withMessages(['doctor_id' => 'Patient already has a doctor assigned']);
+    }
+
+    
+    $patient->update(['doctor_id' => $request->input('doctor_id')]);
+
+    return response()->json(['message' => 'Doctor chosen successfully']);
+}
+
+
+
+
     /**
      * Display a listing of the resource.
      */

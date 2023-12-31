@@ -16,7 +16,7 @@ class Messages extends Model
         'destinataire_id',
         'Contenu_du_Message',
         'Date_de_l_Envoi',
-        // Add other message-specific attributes here
+       
     ];
 
     public function expéditeur()

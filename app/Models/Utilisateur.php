@@ -24,9 +24,7 @@ class Utilisateur extends Model implements Authenticatable
         'Mot_de_passe',
         'Role',
     ];
-    // protected $attributes = [
-    //     'Mot_de_Passe' => '5000000', // Set a default value for 'Mot_de_Passe'
-    // ];
+    
 
 public function patient(){
     return $this->hasOne(Patient::class,'ID_Utilisateur');
@@ -49,6 +47,15 @@ public function getAuthPassword()
 public function validateCredentials($credentials)
 {
     return $this->getAuthPassword() === $credentials['Mot_de_passe'];
+}
+public function sendMessage()
+{
+    return $this->hasMany(Messages::class,'expéditeur_id');
+}
+
+public function getMessages()
+{
+    return $this->hasMany(Messages::class, 'destinataire_id');
 }
 
 

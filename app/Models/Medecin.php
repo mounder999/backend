@@ -15,11 +15,15 @@ class Medecin extends Model
         'user_id',
         'Spécialité',
         'Sessions_Thérapie_Planifiées',
-        // Add other medic-specific attributes here
+       
     ];
 
     public function utilisateur()
     {
         return $this->belongsTo(Utilisateur::class, 'user_id');
     }
+    public function patients()
+{
+    return $this->hasMany(Patient::class, 'doctor_id');
+}
 }
